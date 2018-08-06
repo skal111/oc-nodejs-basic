@@ -3,11 +3,30 @@ kind: Service
 metadata:
   name: oc-nodejs-basic-service
   labels:
-    app: oc-nodejs-baisc-service
+    app: oc-nodejs-basic-service
 spec:
   ports:
   - port: 80
     targetPort: 8081
   type: NodePort
   selector:
-    app: oc-nodejs-basic
+    app: oc-nodejs-basic-pod
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: oc-nodejs-basic-replica
+  labels:
+    app: oc-nodejs-basic-replica
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: oc-nodejs-basic-pod
+    spec:
+      containers:
+      - name: oc-nodejs
+        image: docker-registry.default.svc:5000/poc/oc-nodejs-basic:latest
+        ports:
+        - containerPort: 8081
