@@ -13,6 +13,16 @@ spec:
     app: oc-nodejs-basic-pod
 ---
 apiVersion: v1
+kind: Route
+metadata:
+   name: oc-nodejs-basic-route
+spec:
+   host: oc-nodejs-basic-service-poc.apps-dev.intra-tpg.ch
+   to:
+      kind: Service
+      name: oc-nodejs-basic-service
+---
+apiVersion: v1
 kind: ReplicationController
 metadata:
   name: oc-nodejs-basic-replica
