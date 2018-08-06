@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oc-nodejs-basic-service
+  labels:
+    app: oc-nodejs-baisc-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 8081
+  type: NodePort
+  selector:
+    app: oc-nodejs-basic
