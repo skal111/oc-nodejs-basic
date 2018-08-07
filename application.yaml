@@ -59,3 +59,5 @@ spec:
        to:  
           kind: DockerImage
           name: docker-registry.default.svc:5000/pascal/oc-nodejs-basic:v3
+    triggers:
+    - type: ConfigChange
