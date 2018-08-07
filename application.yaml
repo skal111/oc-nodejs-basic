@@ -37,14 +37,14 @@ spec:
     spec:
       containers:
       - name: oc-nodejs
-        image: docker-registry.default.svc:5000/pascal/my-nodejs-example:latest
+        image: docker-registry.default.svc:5000/pascal/oc-nodejs-basic:v3
         ports:
         - containerPort: 8081
 ---
 kind: BuildConfig
 apiVersion: v1
 metadata:  
-    name: my-nodejs-example
+    name: oc-nodejs-basic
 annotations:
    description: Defines how to build the application
    template.alpha.openshift.io/wait-for-ready: true
@@ -53,10 +53,9 @@ spec:
        type: Git
        git:
           uri: https://github.com/skal111/oc-nodejs-basic.git
-
     strategy:  
        type: Docker
     output:  
        to:  
           kind: DockerImage
-          name: docker-registry.default.svc:5000/pascal/my-nodejs-example:latest
+          name: docker-registry.default.svc:5000/pascal/oc-nodejs-basic:v3
